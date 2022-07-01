@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models
 """holbertonschool-AirBnB_clone"""
 
 
@@ -23,5 +24,6 @@ class BaseModel():
     def to_dict(self):
         """to_dict - returns a dictionary containing all keys/values
         of __dict__ of the instance"""
-        
+        self.__dict__["__class__"] = self.__class__.__name__
+        return self.__dict__
 #2022-07-01T18:15:47.144062
