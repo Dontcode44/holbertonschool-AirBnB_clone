@@ -10,20 +10,23 @@ class BaseModel():
     def __init__(self, id=None):
         """__init__ - inicialize the attributes"""
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now().isoformat("T", "microseconds")
-        self.updated_at = datetime.now().isoformat("T", "microseconds")
-    
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
     def __str__(self):
         """__str__ - print class name, id and dict"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """save - updates the public instance attribute updated_at"""
-        self.updated_at = datetime.now().isoformat("T", "microseconds")
+        self.updated_at = datetime.now()
         
     def to_dict(self):
         """to_dict - returns a dictionary containing all keys/values
         of __dict__ of the instance"""
+        new_dict = self.__dict__.copy()
+        new_dict.update({"__class__": self.__class__.__name__})
+        new_dict.update({"created_at": self.created_at.isoformat()})
+        new_dict.update({"updated_at": self.updated_at.isoformat()})
         self.__dict__["__class__"] = self.__class__.__name__
-        return self.__dict__
-#2022-07-01T18:15:47.144062
+        return new_dict
