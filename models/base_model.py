@@ -7,11 +7,25 @@ import models
 
 class BaseModel():
     """BaseModel - class for all common attributes/methods"""
-    def __init__(self, id=None):
-        """__init__ - inicialize the attributes"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """__init__ - inicialize the attributes"""        
         self.updated_at = datetime.now()
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    pass
+                elif key == "id":
+                    self.id = str(value)
+                elif key == "created_at":
+                    self.created_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.updated_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
 
     def __str__(self):
         """__str__ - print class name, id and dict"""
