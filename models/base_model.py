@@ -26,6 +26,7 @@ class BaseModel():
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """__str__ - print class name, id and dict"""
@@ -35,7 +36,7 @@ class BaseModel():
         """save - updates the public instance attribute updated_at"""
         self.updated_at = datetime.now()
         models.storage.save()
-        
+
     def to_dict(self):
         """to_dict - returns a dictionary containing all keys/values
         of __dict__ of the instance"""
