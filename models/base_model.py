@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import uuid
 from datetime import datetime
+from uuid import uuid4
 import models
 """holbertonschool-AirBnB_clone"""
 
@@ -8,7 +8,7 @@ import models
 class BaseModel():
     """BaseModel - class for all common attributes/methods"""
     def __init__(self, *args, **kwargs):
-        """__init__ - inicialize the attributes"""        
+        """__init__ - inicialize the attributes"""
         self.updated_at = datetime.now()
 
         if kwargs:
@@ -18,19 +18,22 @@ class BaseModel():
                 elif key == "id":
                     self.id = str(value)
                 elif key == "created_at":
-                    self.created_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = (datetime.
+                                       strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key == "updated_at":
-                    self.updated_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = (datetime.
+                                       strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
                     setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             models.storage.new(self)
 
     def __str__(self):
         """__str__ - print class name, id and dict"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return ("[{}] ({}) {}".
+                format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
         """save - updates the public instance attribute updated_at"""

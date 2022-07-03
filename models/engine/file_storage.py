@@ -1,16 +1,15 @@
 #!/usr/bin/python3
+import json
+import os.path as path
 """holbertonschool-AirBnB_clone - file_storage"""
 
 
-import json
-import os.path as path
-
 class FileStorage():
-    """serializes instances to a JSON file 
+    """serializes instances to a JSON file
     and deserializes JSON file to instances"""
     __file_path = 'file.json'
     __objects = {}
-    
+
     def all(self):
         """returns the dictionary __objects"""
         return self.__objects
