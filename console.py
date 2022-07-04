@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import cmd
-from models import storage
+import models
 from models.base_model import BaseModel
 """holbertonschool-AirBnB_clone"""
 
@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "":
             print("** class name missing **")
         elif arg == "BaseModel":
-            all_objs = storage.all()
+            all_objs = models.storage.all()
             for obj_id in all_objs.keys():
                 obj = all_objs[obj_id]
             new_obj = BaseModel()
@@ -28,11 +28,13 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
     
     def do_show(self, arg):
-        
-        if not arg:
+        arg = arg.split()
+        if len(arg) == 0:
             print("** class name missing **")
-        elif arg:
-            pass
+        elif len(arg) != 3:
+            print("** instance id missing **")
+        elif arg[2] in models.FileStorage.__objects:
+            print("yes")
         
     def close(self):
         """close - exit the program"""
