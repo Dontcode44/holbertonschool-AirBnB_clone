@@ -29,13 +29,15 @@ class HBNBCommand(cmd.Cmd):
     
     def do_show(self, arg):
         arg = arg.split()
+        all_objs = models.storage.all()
         if len(arg) == 0:
             print("** class name missing **")
-        elif len(arg) != 3:
+        elif len(arg) != 2:
             print("** instance id missing **")
-        elif arg[2] in models.FileStorage.__objects:
-            print("yes")
-        
+        elif f'BaseModel.{arg[1]}' in all_objs.keys():
+            print(arg[1])
+        else:
+            print("** no instance found **")
     def close(self):
         """close - exit the program"""
         pass
