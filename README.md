@@ -68,3 +68,12 @@ How to handle named arguments in a function
     <li>All your functions (inside and outside a class) should have a documentation (<code>python3 -c &apos;print(__import__(&quot;my_module&quot;).my_function.__doc__)&apos;</code> and&nbsp;<code>python3 -c &apos;print(__import__(&quot;my_module&quot;).MyClass.my_function.__doc__)&apos;</code>)</li>
     <li>We strongly encourage you to work together on test cases, so that you don&rsquo;t miss any edge case</li>
 </ul>
+<h3>Execution</h3>
+<p>Your shell should work like this in interactive mode:</p>
+<p>$ ./console.py (hbnb) help Documented commands (type help ): ======================================== EOF help quit (hbnb) (hbnb) (hbnb) quit $</p>
+
+<h3>Execution</h3>
+<p>Your shell should work like this in interactive mode:</p>
+<p>$ ./console.py (hbnb) help Documented commands (type help ): ======================================== EOF help quit (hbnb) (hbnb) (hbnb) quit $</p>
+<p>But also in non-interactive mode: (like the Shell project in C)&nbsp;</p>
+<p>$ echo &quot;help&quot; | ./console.py (hbnb) Documented commands (type help ): ======================================== EOF help quit (hbnb) $ $ cat test_help help $ $ cat test_help | ./console.py (hbnb) Documented commands (type help ): ======================================== EOF help quit (hbnb) $</p>
