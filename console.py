@@ -10,7 +10,6 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand - Holberton command interpreter"""
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
 
     def emptyline(self):
         """emptyline - empty line method"""
