@@ -3,7 +3,6 @@
 point of the command interpreter:"""
 
 import cmd
-import models
 from models.base_model import BaseModel
 
 
