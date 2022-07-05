@@ -8,6 +8,8 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand - Holberton command interpreter"""
     prompt = "(hbnb) "
+    classes = ["BaseModel"]
+
     def emptyline(self):
         pass
     def do_quit(self, arg):
@@ -28,6 +30,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
     
     def do_show(self, arg):
+        """Function show"""
         arg = arg.split()
         all_objs = models.storage.all()
         if len(arg) == 0:
@@ -38,6 +41,15 @@ class HBNBCommand(cmd.Cmd):
             print(arg[1])
         else:
             print("** no instance found **")
+
+    def do_destroy(self, arg):
+        """Deletes an instance based id"""
+        arg = arg.split()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in HBNBCommand.classes:
+            print ("** instance id missing **")
+
     def close(self):
         """close - exit the program"""
         pass
