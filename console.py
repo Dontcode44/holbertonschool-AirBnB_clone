@@ -16,8 +16,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, arg):
-        """quit - call close method"""
-        self.close()
+        """Quit command to exit the program"""
         return True
 
     def do_create(self, arg):
@@ -35,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        """Function show"""
+        """Function show """
         arg = arg.split()
         all_objs = models.storage.all()
         if len(arg) == 0:
@@ -77,10 +76,6 @@ class HBNBCommand(cmd.Cmd):
                 print("str_rep")
             else:
                 print("** class doesn't exist **")
-
-    def close(self):
-        """close - exit the program"""
-        pass
 
     def do_EOF(self, arg):
         """EOF - call close method when """
