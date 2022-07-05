@@ -12,6 +12,7 @@ class HBNBCommand(cmd.Cmd):
     classes = ["BaseModel"]
 
     def emptyline(self):
+        """emptyline - empty line method"""
         pass
 
     def do_quit(self, arg):
@@ -20,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
+        """create - create method"""
         if arg == "":
             print("** class name missing **")
         elif arg == "BaseModel":
