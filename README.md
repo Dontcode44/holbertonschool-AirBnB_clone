@@ -12,3 +12,13 @@ This is the first step towards building the first full web application: the AirB
     <li>create the first abstracted storage engine of the project: File storage.</li>
     <li>create all unittests to validate all our classes and storage engine</li>
 </ul>
+
+<h3>What&rsquo;s a command interpreter?</h3>
+<p>Do you remember the Shell? It&rsquo;s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:</p>
+<ul>
+    <li>Create a new object (ex: a new User or a new Place)</li>
+    <li>Retrieve an object from a file, a database etc&hellip;</li>
+    <li>Do operations on objects (count, compute stats, etc&hellip;)</li>
+    <li>Update attributes of an object</li>
+    <li>Destroy an object</li>
+</ul>
