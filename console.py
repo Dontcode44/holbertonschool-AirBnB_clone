@@ -2,7 +2,8 @@
 import cmd
 import models
 from models.base_model import BaseModel
-"""holbertonschool-AirBnB_clone"""
+"""holbertonschool-AirBnB_clone - contains the entry
+point of the command interpreter:"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -65,7 +66,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances"""
-
         str_ins = arg.split()
         all_objs = models.storage.all()
         if not arg or str_ins[0] in HBNBCommand.classes:
