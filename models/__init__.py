@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""FileStorage - create a unique FileStorage
-instance for your application"""
+"""FileStorage - create a unique FileStorage"""
 
 from imp import reload
 from models.engine.file_storage import FileStorage
