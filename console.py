@@ -1,9 +1,10 @@
 #!/usr/bin/python3
+"""holbertonschool-AirBnB_clone - contains the entry
+point of the command interpreter:"""
+
 import cmd
 import models
 from models.base_model import BaseModel
-"""holbertonschool-AirBnB_clone - contains the entry
-point of the command interpreter:"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -83,5 +84,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    """main - executes an interpreter loop"""
     HBNBCommand().cmdloop()
