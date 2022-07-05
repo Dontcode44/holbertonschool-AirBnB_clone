@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""holbertonschool-AirBnB_clone - contains the entry
+"""holbertonschool-AirBnB_clone contains the entry
 point of the command interpreter:"""
 
 import cmd
@@ -10,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def emptyline(self):
-        """emptyline - empty line method"""
+        """emptyline empty line method"""
         pass
 
     def do_quit(self, arg):
@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """EOF - call close method when"""
+        """EOF command to exit the program"""
         return True
 
 
