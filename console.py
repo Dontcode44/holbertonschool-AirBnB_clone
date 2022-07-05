@@ -60,6 +60,18 @@ class HBNBCommand(cmd.Cmd):
                     models.storage.save()
                 else:
                     print ("** no instance found **")
+    def do_all(self, arg):
+        """Prints all string representation of all instances"""
+
+        str_ins = arg.split()
+        all_objs = models.storage.all()
+        if not arg or str_ins[0] in HBNBCommand.classes:
+            str_rep = []
+            for obj in all_objs.values():
+                str_rep.append(obj.__str__())
+                print("str_rep")
+            else:
+                print("** class doesn't exist **")
     def close(self):
         """close - exit the program"""
         pass
