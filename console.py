@@ -12,10 +12,12 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
+
     def do_quit(self, arg):
         """quit - call close method"""
         self.close()
         return True
+
     def do_create(self, arg):
         if arg == "":
             print("** class name missing **")
@@ -28,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_obj)
         elif type(arg) is not __class__:
             print("** class doesn't exist **")
-    
+
     def do_show(self, arg):
         """Function show"""
         arg = arg.split()
@@ -48,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in HBNBCommand.classes:
-            print ("** instance id missing **")
+            print("** instance id missing **")
         elif len(arg) == 1:
             print("** instance id missing **")
         else:
@@ -59,7 +61,8 @@ class HBNBCommand(cmd.Cmd):
                     del objs[strs]
                     models.storage.save()
                 else:
-                    print ("** no instance found **")
+                    print("** no instance found **")
+
     def do_all(self, arg):
         """Prints all string representation of all instances"""
 
@@ -72,12 +75,15 @@ class HBNBCommand(cmd.Cmd):
                 print("str_rep")
             else:
                 print("** class doesn't exist **")
+
     def close(self):
         """close - exit the program"""
         pass
+
     def do_EOF(self, arg):
         """EOF - call close method when """
         return True
+
 
 if __name__ == '__main__':
     """main - executes an interpreter loop"""
