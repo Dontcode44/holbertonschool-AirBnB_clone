@@ -49,7 +49,17 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg[0] not in HBNBCommand.classes:
             print ("** instance id missing **")
-
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        else:
+            objs = models.storage.all()
+            strs = arg[0] + '.' + arg[1]
+            for key, value in objs.items():
+                if strs in key:
+                    del objs[strs]
+                    models.storage.save()
+                else:
+                    print ("** no instance found **")
     def close(self):
         """close - exit the program"""
         pass
