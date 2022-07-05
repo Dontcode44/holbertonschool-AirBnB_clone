@@ -68,3 +68,4 @@ How to handle named arguments in a function
     <li>All your functions (inside and outside a class) should have a documentation (<code>python3 -c &apos;print(__import__(&quot;my_module&quot;).my_function.__doc__)&apos;</code> and&nbsp;<code>python3 -c &apos;print(__import__(&quot;my_module&quot;).MyClass.my_function.__doc__)&apos;</code>)</li>
     <li>We strongly encourage you to work together on test cases, so that you don&rsquo;t miss any edge case</li>
 </ul>
+<p><img src="https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220705%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220705T171150Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=e3be5ac919701b1e83176a918fc8f3efeb8988b73d4ac39b46b430750fb8f279"><br></p>
