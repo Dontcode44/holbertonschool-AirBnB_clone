@@ -96,6 +96,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             objs = models.storage.all()
             camps = "{}.{}".format(arg[0], arg[1])
+            if camps in objs.keys():
+                for value in objs.value():
+                    try:
+                        atribute = type(getattr(value, arg[2]))
+                        arg[3] = atribute(arg[3])
+                    except AttributeError:
+                        pass
+                    setattr(value, arg[2], arg[3])
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
+
 
 
 if __name__ == '__main__':
