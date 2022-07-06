@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+"""unitest for basemodel.py class BaseModel"""
+
+
 from datetime import datetime
 import unittest
 from models import storage
 from models.base_model import BaseModel
-"""unitest for basemodel.py class BaseModel"""
 
 
 class Tests_BaseModel(unittest.TestCase):
