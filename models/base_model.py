@@ -1,4 +1,4 @@
-    #!/usr/bin/python3
+#!/usr/bin/python3
 from datetime import datetime
 from uuid import uuid4
 import models
@@ -56,3 +56,4 @@ class BaseModel():
         new_dict.update({"updated_at": self.updated_at.isoformat()})
         self.__dict__["__class__"] = self.__class__.__name__
         return new_dict
+    
