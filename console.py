@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
+    classes = ["BaseModel"]
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -78,6 +79,26 @@ class HBNBCommand(cmd.Cmd):
                 print("str_rep")
             else:
                 print("** class doesn't exist **")
+    
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id"""
+        arg = arg.split()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in self.classes:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        else:
+            objs = models.storage.all()
+            camps = "{}.{}".format(arg[0], arg[1])
+            if camps in objs
+
+
 
 
 if __name__ == '__main__':
