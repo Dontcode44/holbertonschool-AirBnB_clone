@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                 print("str_rep")
             else:
                 print("** class doesn't exist **")
-    
+
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
         arg = arg.split()
@@ -97,8 +97,6 @@ class HBNBCommand(cmd.Cmd):
             objs = models.storage.all()
             camps = "{}.{}".format(arg[0], arg[1])
             if camps in objs
-
-
 
 
 if __name__ == '__main__':
