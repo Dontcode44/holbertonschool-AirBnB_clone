@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 """unitest for basemodel.py class BaseModel"""
 
 
-class tests_BaseModel(unittest.TestCase):
+class Tests_BaseModel(unittest.TestCase):
     """Tests for FileStorage class"""
     my_model = BaseModel()
 
