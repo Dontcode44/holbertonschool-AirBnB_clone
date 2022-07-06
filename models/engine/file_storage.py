@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os.path as path
+from models.base_model import BaseModel
 """holbertonschool-AirBnB_clone - file_storage"""
 
 
@@ -12,7 +13,7 @@ class FileStorage():
 
     def all(self):
         """returns the dictionary __objects"""
-        return self.__objects
+        return self.read_json()
 
     def new(self, obj):
         """new - sets in __objects the obj"""
@@ -24,19 +25,25 @@ class FileStorage():
         new_dict = {}
         data = {}
         if path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as save:
-                data = json.load(save)
+            data = self.read_json()
         for key, value in self.__objects.items():
             new_dict[key] = value.to_dict()
-
+        data.update(new_dict)
         with open(self.__file_path, 'w') as save:
-            data.update(new_dict)
             json.dump(data, save)
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
         if path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as save:
-                reloaded_objects = json.load(save)
-                return reloaded_objects
+            return self.read_json()
         pass
+    
+    def read_json(self):
+        """read json file"""
+        if path.exists(self.__file_path):
+            with open(self.__file_path, 'r') as save:
+                return json.load(save)
+        else:
+            with open(self.__file_path, 'w') as save:
+                json.dump({}, save)
+            return {}
