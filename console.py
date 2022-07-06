@@ -96,7 +96,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             objs = models.storage.all()
             camps = "{}.{}".format(arg[0], arg[1])
-            if camps in objs
 
 
 if __name__ == '__main__':
