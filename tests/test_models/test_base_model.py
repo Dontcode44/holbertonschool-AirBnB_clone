@@ -19,6 +19,10 @@ class tests_BaseModel(unittest.TestCase):
         self.assertIsInstance(self.my_model.created_at, datetime)
         self.assertIsInstance(self.my_model.id, str)
 
+    def test_exist_class(self):
+        """Test if the class exist"""
+        self.assertEqual(str(type(self.my_model)),
+        "<class 'models.base_model.BaseModel'>")
 
 if __name__ == '__main__':
     unittest.main()
