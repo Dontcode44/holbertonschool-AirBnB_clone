@@ -13,7 +13,7 @@ class FileStorage():
 
     def all(self):
         """returns the dictionary __objects"""
-        return self.read_json()
+        return self.__objects
 
     def new(self, obj):
         """new - sets in __objects the obj"""
@@ -34,8 +34,11 @@ class FileStorage():
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
+        all_obj = {}
         if path.exists(self.__file_path):
-            return self.read_json()
+            all_obj = self.read_json()
+        for key, value in all_obj.items():
+            self.__objects[key] = BaseModel(**value)
         pass
     
     def read_json(self):
