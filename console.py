@@ -69,8 +69,6 @@ class HBNBCommand(cmd.Cmd):
             for key in stor.copy().keys():
                 if space in key:
                     del stor[str(space)]
-                    print(type(stor))
-                    print(type(storage))
                     storage.save()
                 else:
                     no_instance = True
