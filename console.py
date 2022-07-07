@@ -70,8 +70,8 @@ class HBNBCommand(cmd.Cmd):
                 if space in key:
                     del stor[str(space)]
                     storage.save()
-                else:
                     no_instance = True
+
             if not no_instance:
                 print("** no instance found **")
 
