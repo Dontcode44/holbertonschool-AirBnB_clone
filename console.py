@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 """HBNBCommand contains the entry point of the command interpreter:"""
 
+from hashlib import new
 import models
 import cmd
+import json
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -32,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = all_objs[obj_id]
             new_obj = BaseModel()
             new_obj.save()
-            print(new_obj)
+            print(new_obj.id)
         elif type(arg) is not __class__:
             print("** class doesn't exist **")
 
@@ -55,18 +59,21 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in HBNBCommand.classes:
-            print("** instance id missing **")
+            print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
         else:
-            objs = models.storage.all()
-            strs = arg[0] + '.' + arg[1]
-            for key, value in objs.items():
-                if strs in key:
-                    del objs[strs]
-                    models.storage.save()
+            stor = storage.all()
+            space = arg[0] + '.' + arg[1]
+            no_instance = False
+            for key in stor.copy().keys():
+                if space == key:
+                    del stor[str(space)]
+                    storage.save()
                 else:
-                    print("** no instance found **")
+                    no_instance = True
+            if not no_instance:
+                print("** no instance found **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances"""
@@ -76,9 +83,9 @@ class HBNBCommand(cmd.Cmd):
             str_rep = []
             for obj in all_objs.values():
                 str_rep.append(obj.__str__())
-                print("str_rep")
-            else:
-                print("** class doesn't exist **")
+            print(f"{str_rep}")
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
@@ -107,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
                     models.storage.save()
                 else:
                     print("** no instance found **")
-
+    
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
