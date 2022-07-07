@@ -17,8 +17,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    classes = ["BaseModel", "User", "Amenity",
-               "City", "Place", "Review", "State"]
+    classes = ["BaseModel", "User", "Amenity", "City", "Place", "Review",    "State"]
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -37,11 +36,11 @@ class HBNBCommand(cmd.Cmd):
         """create - create method"""
         if arg == "":
             print("** class name missing **")
-        elif arg in HBNBCommand.classes:
+        elif arg == "BaseModel":
             all_objs = models.storage.all()
             for obj_id in all_objs.keys():
                 obj = all_objs[obj_id]
-            new_obj = HBNBCommand.classes[arg]()
+            new_obj = BaseModel()
             new_obj.save()
             print(new_obj.id)
         elif type(arg) is not __class__:
