@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) != 2:
             print("** instance id missing **")
         elif f'BaseModel.{arg[1]}' in all_objs.keys():
-            print(arg[1])
+            print(all_objs[f"BaseModel.{arg[1]}"])
         else:
             print("** no instance found **")
 
@@ -93,7 +93,6 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id"""
         arg = arg.split()
         arg = arg[0:4]
-        print(arg)
         if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in self.classes:
@@ -114,10 +113,10 @@ class HBNBCommand(cmd.Cmd):
                         arg[3] = atribute(arg[3])
                     except AttributeError:
                         pass
-                    setattr(value, arg[2], arg[3])
+                    setattr(value, arg[2], arg[3].strip('"'))
                     models.storage.save()
-                else:
-                    print("** no instance found **")
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
