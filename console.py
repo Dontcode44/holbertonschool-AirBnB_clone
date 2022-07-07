@@ -12,7 +12,7 @@ from models import User
 
 
 class HBNBCommand(cmd.Cmd):
-    classes = {"BaseModel": BaseModel,"User": User}
+    classes = {"BaseModel": BaseModel, "User": User}
     prompt = "(hbnb) "
 
     def do_quit(self, arg):

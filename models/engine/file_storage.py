@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json
 import os.path as path
-from models.user import User
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -37,10 +36,10 @@ class FileStorage():
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
-        all_obj = {}
+        classes = {"BaseModel": BaseModel, "User": User}
         if path.exists(self.__file_path):
-            all_obj = self.read_json()
-        for key, value in all_obj.items():
+            classes = self.read_json()
+        for key, value in classes.items():
             self.__objects[key] = BaseModel(**value)
         pass
 
