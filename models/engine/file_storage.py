@@ -23,14 +23,10 @@ class FileStorage():
     def save(self):
         """save - writes an Object to a text file"""
         new_dict = {}
-        data = {}
-        if path.exists(self.__file_path):
-            data = self.read_json()
-        for key, value in self.__objects.items():
-            new_dict[key] = value.to_dict()
-        data.update(new_dict)
         with open(self.__file_path, 'w') as save:
-            json.dump(data, save)
+            for key, value in self.__objects.items():
+                new_dict[key] = value.to_dict()
+            json.dump(new_dict, save)
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
