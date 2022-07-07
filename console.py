@@ -1,127 +1,58 @@
 #!/usr/bin/python3
-"""HBNBCommand contains the entry point of the command interpreter:"""
-
-from hashlib import new
+from datetime import datetime
+from uuid import uuid4
 import models
-import cmd
-import json
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
-from models import storage
+"""
+holbertonschool-AirBnB_clone -
+a class BaseModel that defines all
+common attributes/methods for other classes:
+"""
 
 
-class HBNBCommand(cmd.Cmd):
-    classes = ["BaseModel"]
-    prompt = "(hbnb) "
+class BaseModel():
+    """BaseModel - class for all common attributes/methods"""
+    def __init__(self, *args, **kwargs):
+        """__init__ - inicialize the attributes"""
+        self.updated_at = datetime.now()
 
-    def do_quit(self, arg):
-        """Quit command to exit the program"""
-        return True
-
-    def do_EOF(self, arg):
-        """EOF command to exit the program"""
-        return True
-
-    def emptyline(self):
-        """Called when an empty line is entered in response to the prompt."""
-        pass
-
-    def do_create(self, arg):
-        """create - create method"""
-        if arg == "":
-            print("** class name missing **")
-        elif arg == "BaseModel":
-            all_objs = models.storage.all()
-            for obj_id in all_objs.keys():
-                obj = all_objs[obj_id]
-            new_obj = BaseModel()
-            new_obj.save()
-            print(new_obj.id)
-        elif type(arg) is not __class__:
-            print("** class doesn't exist **")
-
-    def do_show(self, arg):
-        """Function show """
-        arg = arg.split()
-        all_objs = models.storage.all()
-        if len(arg) == 0:
-            print("** class name missing **")
-            return
-        elif arg[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        elif len(arg) == 1:
-            print("** instance id missing **")
-            return
-        elif f'BaseModel.{arg[1]}' in all_objs.keys():
-            print(all_objs[f"BaseModel.{arg[1]}"])
-            return
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    pass
+                elif key == "id":
+                    self.id = str(value)
+                elif key == "created_at":
+                    self.created_at = (datetime.
+                                       strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif key == "updated_at":
+                    self.updated_at = (datetime.
+                                       strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, key, value)
         else:
-            print("** no instance found **")
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
-    def do_destroy(self, arg):
-        """Deletes an instance based id"""
-        arg = arg.split()
-        if len(arg) == 0:
-            print("** class name missing **")
-        elif arg[0] not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-        elif len(arg) == 1:
-            print("** instance id missing **")
-        else:
-            stor = storage.all()
-            space = arg[0] + '.' + arg[1]
-            no_instance = False
-            for key in stor.copy().keys():
-                if space in key:
-                    del stor[str(space)]
-                    storage.save()
-                    no_instance = True
+    def __str__(self):
+        """__str__ - print class name, id and dict
+        format example: [<class name>] (<self.id>) <self.__dict__>"""
+        return ("[{}] ({}) {}".
+                format(self.__class__.__name__, self.id, self.__dict__))
 
-            if not no_instance:
-                print("** no instance found **")
+    def save(self):
+        """save - updates the public instance attribute updated_at
+        with the current datetime"""
+        self.updated_at = datetime.now()
+        models.storage.save()
 
-    def do_all(self, arg):
-        """Prints all string representation of all instances"""
-        str_ins = arg.split()
-        all_objs = models.storage.all()
-        if not arg or str_ins[0] in HBNBCommand.classes:
-            str_rep = []
-            for obj in all_objs.values():
-                str_rep.append(obj.__str__())
-            print(f"{str_rep}")
-        else:
-            print("** class doesn't exist **")
-
-    def do_update(self, arg):
-        """Updates an instance based on the class name and id"""
-        arg = arg.split()
-        arg = arg[0:4]
-        if len(arg) == 0:
-            print("** class name missing **")
-        elif arg[0] not in self.classes:
-            print("** class doesn't exist **")
-        elif len(arg) == 1:
-            print("** instance id missing **")
-        elif len(arg) == 2:
-            print("** attribute name missing **")
-        elif len(arg) == 3:
-            print("** value missing **")
-        else:
-            objs = models.storage.all()
-            camps = "{}.{}".format(arg[0], arg[1])
-            if camps in objs.keys():
-                for value in objs.values():
-                    try:
-                        atribute = type(getattr(value, arg[2]))
-                        arg[3] = atribute(arg[3])
-                    except AttributeError:
-                        pass
-                    setattr(value, arg[2], arg[3].strip('"'))
-                    models.storage.save()
-            else:
-                print("** no instance found **")
-
-
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    def to_dict(self):
+        """to_dict - returns a dictionary containing all keys/values
+        of __dict__ of the instance"""
+        new_dict = self.__dict__.copy()
+        new_dict.update({"__class__": self.__class__.__name__})
+        new_dict.update({"created_at": self.created_at.isoformat()})
+        new_dict.update({"updated_at": self.updated_at.isoformat()})
+        self.__dict__["__class__"] = self.__class__.__name__
+        return new_dict
