@@ -10,7 +10,8 @@ from models.engine.file_storage import FileStorage
 from models import storage
 from models.user import User
 
-classes = ['BaseModel', 'User']
+classes = {"BaseModel": BaseModel, "User": User}
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
