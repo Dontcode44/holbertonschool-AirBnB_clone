@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import json
 import os.path as path
+
+from numpy import save
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -37,12 +39,11 @@ class FileStorage():
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
-        all_obj = {}
         if path.exists(FileStorage.__file_path):
-            all_obj = self.read_json()
-        for key, value in all_obj.items():
-            keys = FileStorage.__objects
-            keys[key] = FileStorage.classes[value["__class__"]](**value)
+            with open(FileStorage.__file_path, "r") as save:
+                for key, value in json.load(save).items():
+                    keys = FileStorage.__objects
+                    keys[key] = FileStorage.classes[value["__class__"]](**value)
         pass
 
     def read_json(self):
