@@ -17,16 +17,16 @@ class BaseModel():
 
         if kwargs:
             for key, value in kwargs.items():
-                if key == "__class__":
-                    pass
-                elif key == "id":
-                    self.id = str(value)
-                elif key == "created_at":
+                if key == '__class__':
+                    continue
+                if key == "created_at":
                     self.created_at = (datetime.
                                        strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                elif key == "updated_at":
+                    continue
+                if key == "updated_at":
                     self.updated_at = (datetime.
                                        strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    continue
                 else:
                     setattr(self, key, value)
         else:
@@ -54,5 +54,4 @@ class BaseModel():
         new_dict.update({"__class__": self.__class__.__name__})
         new_dict.update({"created_at": self.created_at.isoformat()})
         new_dict.update({"updated_at": self.updated_at.isoformat()})
-        self.__dict__["__class__"] = self.__class__.__name__
         return new_dict
