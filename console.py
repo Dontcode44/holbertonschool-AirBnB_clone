@@ -10,9 +10,9 @@ from models.engine.file_storage import FileStorage
 from models import storage
 from models.user import User
 
+classes = ['BaseModel', 'User']
 
 class HBNBCommand(cmd.Cmd):
-    classes = ['BaseModel', 'User']
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
