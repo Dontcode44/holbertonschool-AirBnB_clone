@@ -8,11 +8,19 @@ import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
-    classes = ["BaseModel"]
     prompt = "(hbnb) "
+
+    classes = ["BaseModel",
+               "User",
+               "Amenity",
+               "City",
+               "Place",
+               "Review",
+               "State"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
