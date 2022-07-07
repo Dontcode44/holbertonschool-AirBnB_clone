@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in self.classes:
+        elif arg[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -106,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
             objs = models.storage.all()
             camps = "{}.{}".format(arg[0], arg[1])
             if camps in objs.keys():
-                for value in objs.value():
+                for value in objs.values():
                     try:
                         atribute = type(getattr(value, arg[2]))
                         arg[3] = atribute(arg[3])
