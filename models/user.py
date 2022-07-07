@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+from models.base_model import BaseModel
 """User class"""
 
-from models.base_model import BaseModel
 
 class User(BaseModel):
     """Atributes of the class"""

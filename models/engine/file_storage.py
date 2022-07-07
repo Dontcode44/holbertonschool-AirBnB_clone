@@ -36,7 +36,7 @@ class FileStorage():
         for key, value in all_obj.items():
             self.__objects[key] = BaseModel(**value)
         pass
-    
+
     def read_json(self):
         """read json file"""
         if path.exists(self.__file_path):

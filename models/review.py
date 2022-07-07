@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+from models.base_model import BaseModel
 """Review class from BaseModel"""
 
-from models.base_model import BaseModel
 
 class Review(BaseModel):
     """Atributes of the class"""
