@@ -8,10 +8,11 @@ import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
+from models import User
 
 
 class HBNBCommand(cmd.Cmd):
-    classes = ["BaseModel"]
+    classes = {"BaseModel": BaseModel,"User": User}
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
