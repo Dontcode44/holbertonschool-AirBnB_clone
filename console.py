@@ -30,12 +30,14 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """create - create method"""
         arg = arg.split()
-        if arg == "":
+        if len(arg) == 0:
             print("** class name missing **")
+            return False
         elif arg[0] in HBNBCommand.classes:
             posti = self.classes[arg[0]]()
         else:
             print("** class doesn't exist **")
+            return
         print(posti.id)
         posti.save()
 
