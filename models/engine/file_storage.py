@@ -1,6 +1,7 @@
 import json
 import os.path as path
 from models.base_model import BaseModel
+from models.user import User
 """holbertonschool-AirBnB_clone - file_storage"""
 
 
@@ -9,6 +10,7 @@ class FileStorage():
     and deserializes JSON file to instances"""
     __file_path = 'file.json'
     __objects = {}
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """returns the dictionary __objects"""
@@ -33,7 +35,7 @@ class FileStorage():
         if path.exists(self.__file_path):
             all_obj = self.read_json()
         for key, value in all_obj.items():
-            self.__objects[key] = BaseModel(**value)
+            self.__objects[key] = FileStorage.classes[value["__class__"]](**value)
         pass
 
     def read_json(self):
