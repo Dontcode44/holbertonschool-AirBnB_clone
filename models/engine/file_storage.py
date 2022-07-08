@@ -33,19 +33,9 @@ class FileStorage():
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
-        all_obj = {}
         if path.exists(self.__file_path):
-            all_obj = self.read_json()
-        for key, value in all_obj.items():
-            self.__objects[key] = (FileStorage.
-                                   classes[value["__class__"]](**value))
-
-    def read_json(self):
-        """read json file"""
-        if path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as save:
-                return json.load(save)
-        else:
-            with open(self.__file_path, 'w') as save:
-                json.dump({}, save)
-            return {}
+            with open(FileStorage.__file_path, "r") as save:
+                for key, value in json.load(save).items():
+                    self.__objects[key] = (FileStorage.
+                                           classes[value["__class__"]]
+                                           (**value))
