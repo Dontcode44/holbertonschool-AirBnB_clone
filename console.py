@@ -33,14 +33,11 @@ class HBNBCommand(cmd.Cmd):
         if arg == "":
             print("** class name missing **")
         elif arg[0] in HBNBCommand.classes:
-            all_objs = models.storage.all()
-            for obj_id in all_objs.keys():
-                obj = all_objs[obj_id]
-            new_obj = HBNBCommand.classes()
-            new_obj.save()
-            print(new_obj.id)
-        elif type(arg) is not __class__:
+            posti = self.classes[arg[0]]()
+        else:
             print("** class doesn't exist **")
+        print(posti.id)
+        posti.save()
 
     def do_show(self, arg):
         """Function show """
