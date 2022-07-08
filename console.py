@@ -8,12 +8,11 @@ import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
-from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = ["BaseModel"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -31,11 +30,11 @@ class HBNBCommand(cmd.Cmd):
         """create - create method"""
         if arg == "":
             print("** class name missing **")
-        elif arg == HBNBCommand.classes:
+        elif arg == "BaseModel":
             all_objs = models.storage.all()
             for obj_id in all_objs.keys():
                 obj = all_objs[obj_id]
-            new_obj = HBNBCommand.classes()
+            new_obj = BaseModel()
             new_obj.save()
             print(new_obj.id)
         elif type(arg) is not __class__:

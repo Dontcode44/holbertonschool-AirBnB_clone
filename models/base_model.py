@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 from datetime import datetime
 from uuid import uuid4
 import models
@@ -17,16 +16,16 @@ class BaseModel():
 
         if kwargs:
             for key, value in kwargs.items():
-                if key == '__class__':
-                    continue
-                if key == "created_at":
+                if key == "__class__":
+                    pass
+                elif key == "id":
+                    self.id = str(value)
+                elif key == "created_at":
                     self.created_at = (datetime.
                                        strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                    continue
-                if key == "updated_at":
+                elif key == "updated_at":
                     self.updated_at = (datetime.
                                        strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                    continue
                 else:
                     setattr(self, key, value)
         else:
