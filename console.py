@@ -33,12 +33,15 @@ class HBNBCommand(cmd.Cmd):
 
         if len(arg) == 0:
             print("** class name missing **")
+            return
         elif arg[0] in HBNBCommand.classes:
             obj = HBNBCommand.classes[arg[0]]
             obj.save()
             print(obj.id)
+            return
         else:
             print("** class doesn't exist **")
+            return
 
     def do_show(self, arg):
         """Function show """
