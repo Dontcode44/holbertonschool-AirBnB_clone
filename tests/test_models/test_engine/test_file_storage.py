@@ -95,6 +95,12 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(Model._FileStorage__file_path, str)
         self.assertIsInstance(Model._FileStorage__objects, dict)
 
+        with open("file.json", "w") as f:
+            f.write("{}")
+        with open("file.json", "r") as r:
+            for line in r:
+                self.assertEqual(line, "{}")
+        self.assertIs(a_storage.reload(), None)
 
 if __name__ == '__main__':
     unittest.main()
