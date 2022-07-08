@@ -8,11 +8,12 @@ import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -53,8 +54,8 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 1:
             print("** instance id missing **")
             return
-        elif f'BaseModel.{arg[1]}' in all_objs.keys():
-            print(all_objs[f"BaseModel.{arg[1]}"])
+        elif f'{arg[0]}.{arg[1]}' in all_objs.keys():
+            print(all_objs[f"{arg[0]}.{arg[1]}"])
             return
         else:
             print("** no instance found **")
