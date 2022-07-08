@@ -39,7 +39,6 @@ class FileStorage():
         for key, value in all_obj.items():
             self.__objects[key] = (FileStorage.
                                    classes[value["__class__"]](**value))
-        pass
 
     def read_json(self):
         """read json file"""

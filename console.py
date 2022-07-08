@@ -29,16 +29,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """create - create method"""
-        if arg == "":
+        arg = arg.split()
+
+        if len(arg) == 0:
             print("** class name missing **")
-        elif arg == "BaseModel":
-            all_objs = models.storage.all()
-            for obj_id in all_objs.keys():
-                obj = all_objs[obj_id]
-            new_obj = BaseModel()
-            new_obj.save()
-            print(new_obj.id)
-        elif type(arg) is not __class__:
+        elif arg[0] in HBNBCommand.classes:
+            obj = HBNBCommand.classes[arg[0]]
+            obj.save()
+            print(obj.id)
+        else:
             print("** class doesn't exist **")
 
     def do_show(self, arg):
