@@ -3,6 +3,11 @@ import json
 import os.path as path
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 """holbertonschool-AirBnB_clone - file_storage"""
 
@@ -33,9 +38,19 @@ class FileStorage():
 
     def reload(self):
         """reload - deserializes the JSON file to __objects"""
+        all_obj = {}
         if path.exists(self.__file_path):
-            with open(FileStorage.__file_path, "r") as save:
-                for key, value in json.load(save).items():
-                    self.__objects[key] = (FileStorage.
-                                           classes[value["__class__"]]
-                                           (**value))
+            all_obj = self.read_json()
+        for key, value in all_obj.items():
+            self.__objects[key] = FileStorage.classes[value["__class__"]](**value)
+        pass
+
+    def read_json(self):
+        """read json file"""
+        if path.exists(self.__file_path):
+            with open(self.__file_path, 'r') as save:
+                return json.load(save)
+        else:
+            with open(self.__file_path, 'w') as save:
+                json.dump({}, save)
+            return {}

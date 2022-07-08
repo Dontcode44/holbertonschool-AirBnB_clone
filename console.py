@@ -38,7 +38,6 @@ class HBNBCommand(cmd.Cmd):
             obj = HBNBCommand.classes[arg[0]]
             obj.save()
             print(obj.id)
-            return
         else:
             print("** class doesn't exist **")
             return
