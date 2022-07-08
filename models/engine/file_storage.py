@@ -2,6 +2,11 @@ import json
 import os.path as path
 from models.base_model import BaseModel
 from models.user import User
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
 """holbertonschool-AirBnB_clone - file_storage"""
 
 
@@ -10,7 +15,8 @@ class FileStorage():
     and deserializes JSON file to instances"""
     __file_path = 'file.json'
     __objects = {}
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = {"BaseModel": BaseModel, "User": User, "Amenity": Amenity,
+               "City": City, "Place": Place, "Review": Review, "State": State}
 
     def all(self):
         """returns the dictionary __objects"""
