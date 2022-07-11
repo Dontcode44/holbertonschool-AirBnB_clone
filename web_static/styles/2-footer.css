@@ -2,9 +2,8 @@ footer {
     background-color: #00FF00;
     height: 60px;
     width: 100%;
-}
-
-p {
+    position: fixed;
+    bottom: 0px;
     text-align: center;
     margin: auto;
     position: absolute;
